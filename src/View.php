@@ -1,7 +1,6 @@
 <?php
 namespace Basic;
 class View{
-    public $view;
     function setView($name,$data=null,$print=true){
         if($name=='404'){
             header('HTTP/1.0 404 Not Found');

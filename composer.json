@@ -1,0 +1,11 @@
+{
+	"name" : "basic/view",
+	"description" : "Sistema de view básico ",
+	"minimum-stability" : "stable",
+	"license" : "MIT",
+	"autoload" : {
+		"psr-4" : {
+			"Basic\\" : "/src"
+		}
+	}
+}
