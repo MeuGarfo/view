@@ -36,6 +36,23 @@ class View{
         header("Content-type:application/json");
         print json_encode($data,JSON_PRETTY_PRINT);
     }
+    function segment($key = null) {
+        $uri = @explode('?',$_SERVER ['REQUEST_URI'])[0];
+        $uri = @explode ( '/', $uri );
+        $uri = @array_values ( array_filter ( $uri ) );
+        if (is_null ( $key )) {
+            if(count($uri)==0){
+                $uri[0]='/';
+            }
+            return $uri;
+        } else {
+            if (isset ( $uri [$key] )) {
+                return $uri [$key];
+            } else {
+                return false;
+            }
+        }
+    }
     function view($name,$data=null,$print=true){
         if($name=='404'){
             header('HTTP/1.0 404 Not Found');
