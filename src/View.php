@@ -1,7 +1,42 @@
 <?php
 namespace Basic;
 class View{
-    function setView($name,$data=null,$print=true){
+    function first_word($word){
+        return strtok($word, " ");
+    }
+    function i18n($key=null,$print=true){
+        $language='pt';
+        $filename=ROOT.'view/i18n.php';
+        if(file_exists($filename)){
+            $i18n=require $filename;
+            if(isset($i18n[$key][$language])){
+                $output=$i18n[$key][$language];
+            }else if(isset($i18n[$key][DEFAULT_LANGUAGE])){
+                $output=$i18n[$key][DEFAULT_LANGUAGE];
+            }else{
+                $output=$key;
+            }
+        }else{
+            $output=$key;
+        }
+        if($print){
+            print $output;
+        }else{
+            return $output;
+        }
+    }
+    function is_ajax(){
+        if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            return true;
+        }else{
+            return false;
+        }
+    }
+    function json($data){
+        header("Content-type:application/json");
+        print json_encode($data,JSON_PRETTY_PRINT);
+    }
+    function view($name,$data=null,$print=true){
         if($name=='404'){
             header('HTTP/1.0 404 Not Found');
         }
@@ -20,7 +55,7 @@ class View{
                 return $output;
             }
         }else{
-            die('<h1>Error</h1>View <b>'.$filename.'</b> not found');
+            die('view <b>'.$filename.'</b> not found');
         }
     }
 }
