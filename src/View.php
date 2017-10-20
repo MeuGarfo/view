@@ -74,7 +74,7 @@ class View
     * @param  mixed  $key Número da parte (opcional)
     * @return mixed       Parte(s) da URL
     */
-    public function segment($key = null):mixed
+    public function segment($key = null)
     {
         $uri = @explode('?', $_SERVER ['REQUEST_URI'])[0];
         $uri = @explode('/', $uri);
