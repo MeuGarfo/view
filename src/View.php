@@ -15,7 +15,7 @@ class View
     * @param  string $word Frase
     * @return string       Primeira palavra
     */
-    public function firstWord(string $word):string
+    public function firstWord(string $word)
     {
         return strtok($word, " ");
     }
@@ -25,7 +25,7 @@ class View
     * @param  boolean $print Printar ou não
     * @return string         Texto traduzido
     */
-    public function i18n(string $key, bool $print=true):string
+    public function i18n(string $key, bool $print=true)
     {
         $language='pt';
         $filename=ROOT.'view/i18n.php';
@@ -51,7 +51,7 @@ class View
     * Detecta se a requisição web é ajax ou não
     * @return bool Retorna true ou false
     */
-    public function isAjax():bool
+    public function isAjax()
     {
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
             return true;
@@ -64,7 +64,7 @@ class View
     * @param  mixed  $data Dados a serem convertidos
     * @return string       String JSON com header HTTP
     */
-    public function json($data):string
+    public function json($data)
     {
         header("Content-type:application/json");
         print json_encode($data, JSON_PRETTY_PRINT);
@@ -99,7 +99,7 @@ class View
     * @param  boolean $print Printar ou não
     * @return string         Conteúdo da view compilada
     */
-    public function view(string $name, array $data=[], bool $print=true):string
+    public function view(string $name, array $data=[], bool $print=true)
     {
         if ($name=='404') {
             header('HTTP/1.0 404 Not Found');
