@@ -104,7 +104,7 @@ class View
         if ($name=='404') {
             header('HTTP/1.0 404 Not Found');
         }
-        $filename=ROOT.'view/'.$name.'.php';
+        $filename='view/'.$name.'.php';
         $data['data']=$data;
         $data['viewName']=$name;
         if (file_exists($filename)) {
