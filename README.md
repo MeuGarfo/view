@@ -1,2 +1,2 @@
 # view
-:eyeglasses: Sistema de view básico
+Sistema de view básico
