@@ -6,29 +6,18 @@
 namespace Basic;
 
 /**
- * Classe View
- */
+* Classe View
+*/
 class View
 {
-    /**
-    * Retorna a primeira palavra de uma frase
-    * @param  string $word Frase
-    * @return string       Primeira palavra
-    */
     public function firstWord(string $word)
     {
         return strtok($word, " ");
     }
-    /**
-    * Tradução usando o arquivo view/i18n.php
-    * @param  string  $key   Nome da chave
-    * @param  boolean $print Printar ou não
-    * @return string         Texto traduzido
-    */
     public function i18n(string $key, bool $print=true)
     {
         $language='pt';
-        $filename=ROOT.'view/i18n.php';
+        $filename=ROOT.'app/view/i18n.php';
         if (file_exists($filename)) {
             $i18n=require $filename;
             if (isset($i18n[$key][$language])) {
@@ -47,10 +36,6 @@ class View
             return $output;
         }
     }
-    /**
-    * Detecta se a requisição web é ajax ou não
-    * @return bool Retorna true ou false
-    */
     public function isAjax()
     {
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
@@ -59,21 +44,15 @@ class View
             return false;
         }
     }
-    /**
-    * Converte para JSON
-    * @param  mixed  $data Dados a serem convertidos
-    * @return string       String JSON com header HTTP
-    */
     public function json($data)
     {
         header("Content-type:application/json");
         print json_encode($data, JSON_PRETTY_PRINT);
     }
-    /**
-    * Retorna uma parte da URL
-    * @param  mixed  $key Número da parte (opcional)
-    * @return mixed       Parte(s) da URL
-    */
+    public function method()
+    {
+        return @$_SERVER['REQUEST_METHOD'];
+    }
     public function segment($key = null)
     {
         $uri = @explode('?', $_SERVER ['REQUEST_URI'])[0];
@@ -92,19 +71,12 @@ class View
             }
         }
     }
-    /**
-    * View
-    * @param  string  $name  Nome da view
-    * @param  array   $data  Variáveis
-    * @param  boolean $print Printar ou não
-    * @return string         Conteúdo da view compilada
-    */
-    public function view(string $name, array $data=[], bool $print=true)
+    public function view($name, $data=null, $print=true)
     {
         if ($name=='404') {
             header('HTTP/1.0 404 Not Found');
         }
-        $filename=$name.'.php';
+        $filename=ROOT.'app/view/'.$name.'.php';
         $data['data']=$data;
         $data['viewName']=$name;
         if (file_exists($filename)) {
