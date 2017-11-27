@@ -44,6 +44,15 @@ class View
             return false;
         }
     }
+    public function isDev():bool
+    {
+        $end=@end(explode('.', $_SERVER['SERVER_NAME']));
+        if ($end==='dev') {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public function json($data)
     {
         header("Content-type:application/json");
@@ -69,6 +78,14 @@ class View
             } else {
                 return false;
             }
+        }
+    }
+    public function slug(string $text, $set=true)
+    {
+        if ($set) {
+            return str_replace(' ', '_', $text);
+        } else {
+            return str_replace('_', ' ', $text);
         }
     }
     public function view($name, $data=null, $print=true)
