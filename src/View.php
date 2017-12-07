@@ -62,6 +62,10 @@ class View
     {
         return @$_SERVER['REQUEST_METHOD'];
     }
+    public function redirect($url)
+    {
+        header('Location: '.$url);
+    }
     public function segment($key = null)
     {
         $uri = @explode('?', $_SERVER ['REQUEST_URI'])[0];
