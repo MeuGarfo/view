@@ -62,6 +62,9 @@ class View
     {
         return @$_SERVER['REQUEST_METHOD'];
     }
+    public function out($name, $data=null, $print=true){
+        return $this->view($name, $data=null, $print=true);
+    }    
     public function redirect($url)
     {
         header('Location: '.$url);
