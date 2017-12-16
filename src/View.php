@@ -102,6 +102,7 @@ class View
         }
         $filename=ROOT.'app/view/'.$name.'.php';
         $data['data']=$data;
+        $data['view']=$view;
         $data['viewName']=$name;
         if (file_exists($filename)) {
             extract($data);
