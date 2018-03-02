@@ -124,6 +124,12 @@ class View
         if ($name=='404') {
             header('HTTP/1.0 404 Not Found');
         }
+        if ($name=='403') {
+            header('HTTP/1.0 403 Forbidden');
+        }
+        if ($name=='500') {
+            header('HTTP/1.0 500 Internal Server Error');
+        }
         $filename=ROOT.'app/view/'.$name.'.php';
         $data['data']=$data;
         $data['view']=$this;
