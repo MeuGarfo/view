@@ -10,7 +10,7 @@ namespace Basic;
 */
 class View
 {
-    public function esc(string $text, bool $trim=true)
+    public function e(string $text, bool $trim=true)
     {
         if ($trim) {
             $text = preg_replace("/[\r\n]+/", " ", $text);
