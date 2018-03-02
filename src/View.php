@@ -10,6 +10,19 @@ namespace Basic;
 */
 class View
 {
+    public function esc(string $text, bool $trim=true)
+    {
+        if ($trim) {
+            $text = preg_replace("/[\r\n]+/", " ", $text);
+            $text = preg_replace("/\s+/", ' ', $text);
+            $text = preg_replace("/\t+/", ' ', $text);
+            $text = trim($text);
+            $text = htmlentities($text);
+        } else {
+            $text = htmlentities($text);
+        }
+        return $text;
+    }
     public function firstWord(string $word)
     {
         return strtok($word, " ");
@@ -62,9 +75,10 @@ class View
     {
         return @$_SERVER['REQUEST_METHOD'];
     }
-    public function out($name, $data=null, $print=true){
+    public function out($name, $data=null, $print=true)
+    {
         return $this->view($name, $data, $print);
-    }    
+    }
     public function redirect($url)
     {
         header('Location: '.$url);
