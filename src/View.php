@@ -92,6 +92,7 @@ class View
     public function redirect($url)
     {
         header('Location: '.$url);
+        exit();
     }
     public function segment($key = null)
     {
