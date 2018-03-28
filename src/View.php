@@ -72,6 +72,10 @@ class View
         $end=@end(explode('.', $_SERVER['SERVER_NAME']));
         if ($end==='dev') {
             return true;
+        } elseif ($end==='local') {
+            return true;
+        } elseif ($end==='localhost') {
+            return true;
         } else {
             return false;
         }
