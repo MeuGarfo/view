@@ -10,6 +10,14 @@ namespace Basic;
 */
 class View
 {
+    public $dir;
+    public function __construct($dir=false){
+        if($dir){
+            $this->dir=ROOT.'app/view/';
+        }else{
+            $this->dir=$dir;
+        }
+    }
     public function e(string $text, bool $trim=true)
     {
         if ($trim) {
@@ -134,7 +142,7 @@ class View
         if ($name=='500') {
             header('HTTP/1.0 500 Internal Server Error');
         }
-        $filename=ROOT.'app/view/'.$name.'.php';
+        $filename=$this->dir.$name.'.php';
         $data['data']=$data;
         $data['view']=$this;
         $data['viewName']=$name;
