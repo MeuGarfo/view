@@ -13,9 +13,9 @@ class View
     public $dir;
     public function __construct($dir=false){
         if($dir){
-            $this->dir=ROOT.'app/view/';
-        }else{
             $this->dir=$dir;
+        }else{
+            $this->dir=ROOT.'app/view/';
         }
     }
     public function e(string $text, bool $trim=true)
